@@ -22,7 +22,13 @@ mainForm.addEventListener('submit', event => {
   inputValue = formInput.value;
 
   if (inputValue.trim() === '') {
-    alert('There must be smth');
+    iziToast.show({
+      message: 'There must be smth!',
+      messageColor: '#fafafb',
+      backgroundColor: '#ef4040',
+      position: 'topCenter',
+      overlayColor: '#b51b1b',
+    });
     return;
   } else {
     loadingProgress.classList.remove('visually-hidden');
@@ -42,7 +48,17 @@ mainForm.addEventListener('submit', event => {
           }).refresh();
         }
       })
-      .catch(err => console.log(err));
+      .catch(err =>
+        iziToast.show({
+          title: 'Sorry!',
+          titleColor: '#fafafb',
+          message: 'Something went wrong!',
+          messageColor: '#fafafb',
+          backgroundColor: '#db9e02',
+          position: 'center',
+          overlayColor: '#996e00',
+        })
+      );
   }
 
   mainForm.reset();
